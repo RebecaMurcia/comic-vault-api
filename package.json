@@ -4,6 +4,7 @@
   "description": "RESTful API for managing comic characters, issues, story arcs, and worlds.",
   "main": "index.js",
   "scripts": {
+    "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "swagger": "node swagger.js"
   },
@@ -20,7 +21,9 @@
   },
   "homepage": "https://github.com/JLKohl/comic-vault-api#readme",
   "dependencies": {
+    "dotenv": "^16.6.1",
     "express": "^5.2.1",
+    "mongodb": "^6.20.0",
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1"
   }
