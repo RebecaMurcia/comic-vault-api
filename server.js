@@ -1,4 +1,8 @@
-require('dotenv').config();
+try {
+  require('dotenv').config();
+} catch {
+  // Render provides env vars directly; this keeps production startup resilient.
+}
 
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
