@@ -50,6 +50,9 @@ app.get('/', (req, res) => {
   res.send('Welcome to The Comic Vault API');
 });
 
+// DEBUG LINE
+console.log("MONGO_URI:", process.env.MONGO_URI);
+
 // MongoDB connection with mongoose
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
