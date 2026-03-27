@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 
 const express = require('express');
@@ -17,7 +16,7 @@ const storyArcRoutes = require('./src/routes/storyArcRoutes');
 const { ensureAuthenticated } = require('./src/middleware/authMiddleware');
 
 if (!process.env.MONGO_URI) {
-  throw new Error("MONGO_URI is not defined in environment variables");
+  throw new Error('MONGO_URI is not defined in environment variables');
 }
 
 let swaggerSpec;
@@ -40,11 +39,13 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use(session({
-  secret: 'someSecretString',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    secret: 'someSecretString',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -83,12 +84,12 @@ app.use(
   swaggerUi.setup(swaggerSpec)
 );
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB connected');
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });
   })
-  .catch(err => console.error(err));
-
+  .catch((err) => console.error(err));
