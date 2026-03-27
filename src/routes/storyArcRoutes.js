@@ -2,19 +2,25 @@ const express = require('express');
 const router = express.Router();
 const storyArcController = require('../controllers/storyArcController');
 
-// GET all story arcs
-router.get('/', storyArcController.getAllStoryArcs);
 
-// GET a specific story arc by ID
-router.get('/:id', storyArcController.getStoryArcById);
+router.get('/', 
+    /* #swagger.tags = ['Story Arc'] */
+    storyArcController.getAllStoryArcs);
 
-// POST a new story arc
-router.post('/', storyArcController.createStoryArc);
+router.get('/:id', 
+    /* #swagger.tags = ['Story Arc'] */
+    storyArcController.getStoryArcById);
 
-// PUT/PATCH to update a story arc
-router.put('/:id', storyArcController.updateStoryArc);
+router.post('/', 
+    /* #swagger.tags = ['Story Arc'] */
+    storyArcController.createStoryArc);
 
-// DELETE a story arc
-router.delete('/:id', storyArcController.deleteStoryArc);
+router.put('/:id', 
+    /* #swagger.tags = ['Story Arc'] */
+    storyArcController.updateStoryArc);
+
+router.delete('/:id', 
+    /* #swagger.tags = ['Story Arc'] */
+    storyArcController.deleteStoryArc);
 
 module.exports = router;
