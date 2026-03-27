@@ -96,20 +96,20 @@ describe('getCharacterById', () => {
 // createCharacter
 describe('createCharacter', () => {
   it('should create a new character', async () => {
-    const mockSave = jest.fn().mockResolvedValue({ name: 'Naruto' });
+    const mockSave = jest.fn().mockResolvedValue({ name: 'Peggy' });
 
     Character.mockImplementation(() => ({
       save: mockSave
     }));
 
-    const req = mockRequest({ body: { name: 'Naruto' } });
+    const req = mockRequest({ body: { name: 'Peggy' } });
     const res = mockResponse();
 
     await controller.createCharacter(req, res);
 
     expect(mockSave).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(201);
-    expect(res.json).toHaveBeenCalledWith({ name: 'Naruto' });
+    expect(res.json).toHaveBeenCalledWith({ name: 'Peggy' });
   });
 
   it('should handle validation errors', async () => {
