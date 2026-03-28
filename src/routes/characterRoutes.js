@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const characterController = require('../controllers/characterController');
+const { ensureAuthenticated } = require('../middleware/authMiddleware');
 
 // GET all characters
 router.get(
@@ -21,30 +22,12 @@ router.get(
 );
 
 // POST a new character
-router.post(
-  '/',
-  /* #swagger.tags = ['Characters']
-    #swagger.path = '/api/characters'
-    */
-  characterController.createCharacter
-);
+router.post('/', ensureAuthenticated, characterController.createCharacter);
 
 // PUT/PATCH to update a character
-router.put(
-  '/:id',
-  /* #swagger.tags = ['Characters']
-    #swagger.path = '/api/characters'
-    */
-  characterController.updateCharacter
-);
+router.put('/:id', ensureAuthenticated, characterController.updateCharacter);
 
 // DELETE a character
-router.delete(
-  '/:id',
-  /* #swagger.tags = ['Characters']
-    #swagger.path = '/api/characters'
-    */
-  characterController.deleteCharacter
-);
+router.delete('/:id', ensureAuthenticated, characterController.deleteCharacter);
 
 module.exports = router;

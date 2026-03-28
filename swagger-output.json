@@ -43,12 +43,20 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/": {
       "post": {
-        "tags": [
-          "Characters"
-        ],
         "description": "",
+        "parameters": [
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -57,12 +65,28 @@
             "description": "Bad Request"
           }
         }
-      },
+      }
+    },
+    "/{id}": {
       "put": {
-        "tags": [
-          "Characters"
-        ],
         "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -76,10 +100,24 @@
         }
       },
       "delete": {
-        "tags": [
-          "Characters"
-        ],
         "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
