@@ -4,15 +4,27 @@ const characterController = require('../controllers/characterController');
 const { ensureAuthenticated } = require('../middleware/authMiddleware');
 
 // GET all characters
-router.get('/', characterController.getAllCharacters);
+router.get(
+  '/',
+  /* #swagger.tags = ['Characters']
+    #swagger.path = '/api/characters'
+    */
+  characterController.getAllCharacters
+);
 
 // GET a specific character by ID
-router.get('/:id', characterController.getCharacterById);
+router.get(
+  '/:id',
+  /* #swagger.tags = ['Characters']
+    #swagger.path = '/api/characters'
+    */
+  characterController.getCharacterById
+);
 
 // POST a new character
 router.post('/', ensureAuthenticated, characterController.createCharacter);
 
-// PUT - update a character
+// PUT/PATCH to update a character
 router.put('/:id', ensureAuthenticated, characterController.updateCharacter);
 
 // DELETE a character

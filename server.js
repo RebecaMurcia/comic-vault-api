@@ -11,7 +11,9 @@ const cors = require('cors');
 require('./src/middleware/passport');
 
 const authRoutes = require('./src/routes/authRoutes');
-const routes = require('./src/routes/home');
+const characterRoutes = require('./src/routes/characterRoutes');
+const storyArcRoutes = require('./src/routes/storyArcRoutes');
+const issueRoutes = require('./src/routes/issueRoutes');
 const { ensureAuthenticated } = require('./src/middleware/authMiddleware');
 
 if (!process.env.MONGO_URI) {
@@ -57,24 +59,16 @@ app.use((req, res, next) => {
 
 app.set('view engine', 'ejs');
 
-/**
- * @openapi
- * /:
- *   get:
- *     summary: Health check endpoint
- *     tags:
- *       - General
- *     responses:
- *       200:
- *         description: API is running
- */
-
 app.get('/', (req, res) => {
   res.render('index', { user: req.user });
 });
-app.use('/auth', authRoutes);
-app.use('/', routes);
 
+// #swagger.ignore = true
+app.use('/auth', authRoutes);
+app.use('/api/characters', characterRoutes);
+app.use('/api/issues', issueRoutes);
+
+// #swagger.ignore = true
 app.use(
   '/api-docs',
   ensureAuthenticated,

@@ -15,59 +15,37 @@
       "description": "Production server (Render)"
     }
   ],
+  "tags": [
+    {
+      "name": "Characters",
+      "description": "Routes for managing comic characters"
+    },
+    {
+      "name": "Story Arc",
+      "description": "Routes for managing story arcs"
+    }
+  ],
   "paths": {
+    "/api/characters": {
+      "get": {
+        "tags": [
+          "Characters"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/auth/google": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/auth/google/callback": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/auth/logout": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/characters/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
       "post": {
         "description": "",
         "parameters": [
@@ -89,31 +67,7 @@
         }
       }
     },
-    "/characters/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
+    "/{id}": {
       "put": {
         "description": "",
         "parameters": [
@@ -177,52 +131,12 @@
         }
       }
     },
-    "/issues/": {
+    "/api/story-arc": {
       "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "x-dev-bypass",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "tags": [
+          "Story Arc"
         ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/issues/{id}": {
-      "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -235,25 +149,25 @@
           }
         }
       },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-dev-bypass",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
+      "post": {
+        "tags": [
+          "Story Arc"
         ],
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Story Arc"
+        ],
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -267,24 +181,10 @@
         }
       },
       "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-dev-bypass",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "tags": [
+          "Story Arc"
         ],
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
