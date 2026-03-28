@@ -34,4 +34,4 @@ const storyArcSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('StoryArc', storyArcSchema);
+module.exports = mongoose.model('story-arc', storyArcSchema);

@@ -50,7 +50,7 @@ describe('getAllStoryArcs', () => {
 // getStoryArcById
 describe('getStoryArcById', () => {
     it('should return a story arc', async () => {
-        const mockStoryArc = { id: '1', name: 'Time After Time' };
+        const mock = { id: '1', name: 'Time After Time' };
 
         StoryArc.findById.mockResolvedValue(mockStoryArc);
 
