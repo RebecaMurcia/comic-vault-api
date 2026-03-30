@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const worldSchema = new mongoose.Schema(
+const palcesSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -34,4 +34,4 @@ const worldSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('World', worldSchema);
+module.exports = mongoose.model('Places', placesSchema);
