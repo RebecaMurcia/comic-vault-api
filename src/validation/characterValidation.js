@@ -18,21 +18,27 @@ const validate = (req, res, next) => {
   // Create a character arc
   const createValidation = [
     body('title')
-      .isString().withMessage('Title must be a string')
-      .notEmpty().withMessage('Title is required'),
-    body('description')
-      .isString().withMessage('Description must be a string')
-      .notEmpty().withMessage('Description is required'),
-    body('mainCharacters')
+        .isString().withMessage('Title must be a string')
+        .notEmpty().withMessage('Title is required'),
+    body('alias')
+        .optional()
+        .isString().withMessage('Alias must be a string'),
+    body('species')
+        .optional()
+        .isString().withMessage('Species must be a string'),
+    body('alignment')
+        .optional()
+        .isString().withMessage('alignment must be a string'),
+    body('abilities')
       .optional()
-      .isArray().withMessage('mainCharacters must be an array of strings')
-      .custom(arr => arr.every(i => typeof i === 'string')).withMessage('All mainCharacters must be strings'),
-    body('startIssue')
+      .isArray().withMessage('abilities must be an array of strings')
+      .custom(arr => arr.every(i => typeof i === 'string')).withMessage('All abilities must be strings'),
+    body('firstAppearanceIssue')
       .optional()
-      .isInt({ min: 1 }).withMessage('startIssue must be a positive number'),
-    body('endIssue')
+      .isString().withMessage('firstAppearanceIssue must be a string'),
+    body('homePlace')
       .optional()
-      .isInt({ min: 1 }).withMessage('endIssue must be a positive number'),
+      .isString().withMessage('homePlace must be a string'),
     body('status')
       .optional()
       .isIn(['Planned', 'Ongoing', 'Completed']).withMessage('Status must be Planned, Ongoing, or Completed'),

@@ -34,8 +34,8 @@ const characterSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      required: true,
-      trim: true,
+      enum: ['Planned', 'Ongoing', 'Completed'],
+      default: 'Planned',
     },
   },
   { timestamps: true }
