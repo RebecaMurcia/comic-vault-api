@@ -33,15 +33,12 @@
     "/api/characters": {
       "get": {
         "tags": [
-          "Characters"
+          "Character"
         ],
         "description": "",
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -50,7 +47,7 @@
       },
       "post": {
         "tags": [
-          "Characters"
+          "Character"
         ],
         "description": "",
         "parameters": [
@@ -69,14 +66,86 @@
           "400": {
             "description": "Bad Request"
           }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Spider-Man"
+                  },
+                  "alias": {
+                    "type": "string",
+                    "example": "Peter Parker"
+                  },
+                  "powers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "Wall-crawling",
+                      "Spider sense"
+                    ]
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/characters/{id}": {
+      "get": {
+        "tags": [
+          "Character"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Character ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       },
       "put": {
         "tags": [
-          "Characters"
+          "Character"
         ],
         "description": "",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Character ID"
+          },
           {
             "name": "x-dev-bypass",
             "in": "header",
@@ -95,14 +164,52 @@
           "404": {
             "description": "Not Found"
           }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Updated Name"
+                  },
+                  "alias": {
+                    "type": "string",
+                    "example": "Updated Alias"
+                  },
+                  "powers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "New Power"
+                    ]
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
         "tags": [
-          "Characters"
+          "Character"
         ],
         "description": "",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Character ID"
+          },
           {
             "name": "x-dev-bypass",
             "in": "header",
@@ -147,6 +254,15 @@
           "Story Arc"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -154,13 +270,79 @@
           "400": {
             "description": "Bad Request"
           }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "The Dark Saga"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "A long and epic arc..."
+                  },
+                  "mainCharacters": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "Hero",
+                      "Villain"
+                    ]
+                  },
+                  "startIssue": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "endIssue": {
+                    "type": "number",
+                    "example": 10
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "Ongoing"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description"
+                ]
+              }
+            }
+          }
         }
-      },
+      }
+    },
+    "/api/story-arc/{id}": {
       "put": {
         "tags": [
           "Story Arc"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Story Arc ID"
+          },
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -171,6 +353,48 @@
           "404": {
             "description": "Not Found"
           }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Updated Saga Title"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Updated description..."
+                  },
+                  "mainCharacters": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "Hero",
+                      "New Villain"
+                    ]
+                  },
+                  "startIssue": {
+                    "type": "number",
+                    "example": 2
+                  },
+                  "endIssue": {
+                    "type": "number",
+                    "example": 12
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "Completed"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
@@ -178,6 +402,24 @@
           "Story Arc"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Story Arc ID"
+          },
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -194,15 +436,12 @@
     "/api/issues": {
       "get": {
         "tags": [
-          "Issues"
+          "Issue"
         ],
         "description": "",
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -211,7 +450,7 @@
       },
       "post": {
         "tags": [
-          "Issues"
+          "Issue"
         ],
         "description": "",
         "parameters": [
@@ -230,14 +469,85 @@
           "400": {
             "description": "Bad Request"
           }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Issue #1"
+                  },
+                  "issueNumber": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "First issue description"
+                  },
+                  "releaseDate": {
+                    "type": "string",
+                    "example": "2026-04-01"
+                  }
+                },
+                "required": [
+                  "title",
+                  "issueNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/issues/{id}": {
+      "get": {
+        "tags": [
+          "Issue"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Issue ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       },
       "put": {
         "tags": [
-          "Issues"
+          "Issue"
         ],
         "description": "",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Issue ID"
+          },
           {
             "name": "x-dev-bypass",
             "in": "header",
@@ -256,14 +566,51 @@
           "404": {
             "description": "Not Found"
           }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Updated Issue Title"
+                  },
+                  "issueNumber": {
+                    "type": "number",
+                    "example": 2
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Updated description"
+                  },
+                  "releaseDate": {
+                    "type": "string",
+                    "example": "2026-05-01"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
         "tags": [
-          "Issues"
+          "Issue"
         ],
         "description": "",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Issue ID"
+          },
           {
             "name": "x-dev-bypass",
             "in": "header",
